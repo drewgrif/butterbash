@@ -1,0 +1,23 @@
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Backup files
+*.backup
+*.bak
+*.old
+
+# Local configuration
+.bashrc.local
+local/
+
+# Test files
+test/
+tmp/
