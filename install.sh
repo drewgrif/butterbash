@@ -133,16 +133,19 @@ main() {
         print_msg "⚠ Warning: Bash version 4+ recommended (you have $BASH_VERSION)" "$YELLOW"
     fi
     
-    # Confirm installation
-    echo "This will install ButterBash to $BUTTERBASH_DIR"
-    echo "Your existing configuration will be backed up."
-    echo
-    read -p "$(echo -e ${YELLOW}Continue with installation? \(y/N\): ${NC})" -n 1 -r
-    echo
-    
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        print_msg "Installation cancelled" "$RED"
-        exit 1
+    # Skip confirmation if called with --yes flag or from another installer
+    if [[ "$1" != "--yes" ]] && [[ -z "$SKIP_CONFIRMATION" ]]; then
+        # Confirm installation
+        echo "This will install ButterBash to $BUTTERBASH_DIR"
+        echo "Your existing configuration will be backed up."
+        echo
+        read -p "$(echo -e ${YELLOW}Continue with installation? \(y/N\): ${NC})" -n 1 -r
+        echo
+        
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            print_msg "Installation cancelled" "$RED"
+            exit 1
+        fi
     fi
     
     # Run installation steps
