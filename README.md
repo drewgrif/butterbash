@@ -1,4 +1,5 @@
 # 🧈 ButterBash
+![Made for Debian](https://img.shields.io/badge/Made%20for-Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)
 
 A smooth, modular Bash configuration framework that makes your shell experience butter-smooth.
 
