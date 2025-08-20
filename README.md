@@ -1,7 +1,7 @@
 # 🧈 ButterBash
 ![Made for Debian](https://img.shields.io/badge/Made%20for-Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)
 
-<img width="1698" height="1386" alt="2025-08-20_16-40" src="https://github.com/user-attachments/assets/3c053510-45e5-4637-8032-ebc182a9e223" />
+<img width="1704" height="688" alt="2025-08-20_16-41" src="https://github.com/user-attachments/assets/55435ae4-06f5-4210-b289-d5b76389ea51" />
 
 A smooth, modular Bash configuration framework that makes your shell experience butter-smooth.
 
