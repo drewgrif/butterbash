@@ -55,6 +55,26 @@ backup_existing() {
 install_butterbash() {
     print_msg "🚀 Installing ButterBash..." "$BLUE"
     
+    # Check if we're running via curl (no local files)
+    if [ ! -d "bash" ] || [ ! -f "bashrc.example" ]; then
+        print_msg "   📥 Downloading ButterBash files..." "$BLUE"
+        
+        # Create temp directory
+        TEMP_DIR=$(mktemp -d)
+        cd "$TEMP_DIR"
+        
+        # Clone the repository
+        if ! command_exists git; then
+            print_msg "   ❌ Git is required for installation" "$RED"
+            rm -rf "$TEMP_DIR"
+            exit 1
+        fi
+        
+        git clone --quiet https://github.com/drewgrif/butterbash.git
+        cd butterbash
+        print_msg "   ✓ Downloaded ButterBash repository" "$GREEN"
+    fi
+    
     # Create config directory
     mkdir -p "$BUTTERBASH_DIR/functions"
     
@@ -66,6 +86,11 @@ install_butterbash() {
     if [ -f "bashrc.example" ]; then
         cp bashrc.example "$HOME/.bashrc"
         print_msg "   ✓ Installed .bashrc" "$GREEN"
+    fi
+    
+    # Clean up temp directory if we created one
+    if [ -n "$TEMP_DIR" ]; then
+        rm -rf "$TEMP_DIR"
     fi
     
     # Note: .notes and .tasks files are created on first use
