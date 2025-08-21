@@ -55,13 +55,17 @@ todo() {
             local found=false
             
             while IFS= read -r line; do
-                if [[ "$line" == "[ ]"* ]] && [ "$count" -eq "$task_num" ]; then
-                    echo "[x] ${line:4} ($(date '+%Y-%m-%d'))" >> "$temp_file"
-                    echo "✓ Completed: ${line:4}"
-                    found=true
+                if [[ "$line" == "[ ]"* ]]; then
+                    if [ "$count" -eq "$task_num" ]; then
+                        echo "[x] ${line:4} ($(date '+%Y-%m-%d'))" >> "$temp_file"
+                        echo "✓ Completed: ${line:4}"
+                        found=true
+                    else
+                        echo "$line" >> "$temp_file"
+                    fi
+                    ((count++))
                 else
                     echo "$line" >> "$temp_file"
-                    [[ "$line" == "[ ]"* ]] && ((count++))
                 fi
             done < "$todo_file"
             
@@ -103,12 +107,16 @@ todo() {
             local found=false
             
             while IFS= read -r line; do
-                if [[ "$line" == "[ ]"* ]] && [ "$count" -eq "$task_num" ]; then
-                    echo "✗ Removed: ${line:4}"
-                    found=true
+                if [[ "$line" == "[ ]"* ]]; then
+                    if [ "$count" -eq "$task_num" ]; then
+                        echo "✗ Removed: ${line:4}"
+                        found=true
+                    else
+                        echo "$line" >> "$temp_file"
+                    fi
+                    ((count++))
                 else
                     echo "$line" >> "$temp_file"
-                    [[ "$line" == "[ ]"* ]] && ((count++))
                 fi
             done < "$todo_file"
             
