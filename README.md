@@ -32,18 +32,12 @@ cd butterscripts/setup
 
 ButterBash is featured as the top option in ButterScripts' optional tools, providing seamless integration with the broader ecosystem of development tools.
 
-### Quick Install (Direct)
-
-```bash
-curl -sSL https://raw.githubusercontent.com/drewgrif/butterbash/main/install.sh | bash
-```
-
-### Manual Install
+### Direct Install
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/drewgrif/butterbash.git ~/GitHub/butterbash
-cd ~/GitHub/butterbash
+git clone https://github.com/drewgrif/butterbash.git
+cd butterbash
 ```
 
 > **Note**: This project will be transitioning to Codeberg in the future. Watch for updates!

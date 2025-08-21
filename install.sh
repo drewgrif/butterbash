@@ -55,24 +55,11 @@ backup_existing() {
 install_butterbash() {
     print_msg "🚀 Installing ButterBash..." "$BLUE"
     
-    # Check if we're running via curl (no local files)
+    # Check if required files exist
     if [ ! -d "bash" ] || [ ! -f "bashrc.example" ]; then
-        print_msg "   📥 Downloading ButterBash files..." "$BLUE"
-        
-        # Create temp directory
-        TEMP_DIR=$(mktemp -d)
-        cd "$TEMP_DIR"
-        
-        # Clone the repository
-        if ! command_exists git; then
-            print_msg "   ❌ Git is required for installation" "$RED"
-            rm -rf "$TEMP_DIR"
-            exit 1
-        fi
-        
-        git clone --quiet https://github.com/drewgrif/butterbash.git
-        cd butterbash
-        print_msg "   ✓ Downloaded ButterBash repository" "$GREEN"
+        print_msg "   ❌ Error: ButterBash files not found!" "$RED"
+        print_msg "   Please run the installer from the cloned butterbash directory" "$YELLOW"
+        exit 1
     fi
     
     # Create config directory
@@ -83,29 +70,27 @@ install_butterbash() {
     print_msg "   ✓ Copied configuration files" "$GREEN"
     
     # Install main bashrc
-    if [ -f "bashrc.example" ]; then
-        cp bashrc.example "$HOME/.bashrc"
-        print_msg "   ✓ Installed .bashrc" "$GREEN"
-    fi
-    
-    # Clean up temp directory if we created one
-    if [ -n "$TEMP_DIR" ]; then
-        rm -rf "$TEMP_DIR"
-    fi
+    cp bashrc.example "$HOME/.bashrc"
+    print_msg "   ✓ Installed .bashrc" "$GREEN"
     
     # Note: .notes and .tasks files are created on first use
 }
 
 # Install optional dependencies
 install_dependencies() {
-    # Skip dependency prompt if not interactive (piped)
-    if [[ ! -t 0 ]]; then
-        print_msg "   ℹ Skipping optional tools (run installer interactively to install them)" "$YELLOW"
+    echo
+    # Use /dev/tty to read from terminal even when piped
+    if [[ -t 0 ]]; then
+        # Normal interactive mode
+        read -p "$(echo -e ${YELLOW}Would you like to install recommended tools? [fzf, ripgrep] \(y/N\): ${NC})" -n 1 -r
+    elif [[ -e /dev/tty ]]; then
+        # Piped mode but terminal available
+        read -p "$(echo -e ${YELLOW}Would you like to install recommended tools? [fzf, ripgrep] \(y/N\): ${NC})" -n 1 -r </dev/tty
+    else
+        # No terminal available at all (like in CI/CD)
+        print_msg "   ℹ Skipping optional tools (no terminal available)" "$YELLOW"
         return
     fi
-    
-    echo
-    read -p "$(echo -e ${YELLOW}Would you like to install recommended tools? [fzf, ripgrep] \(y/N\): ${NC})" -n 1 -r
     echo
     
     if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -164,9 +149,9 @@ main() {
         print_msg "⚠ Warning: Bash version 4+ recommended (you have $BASH_VERSION)" "$YELLOW"
     fi
     
-    # Skip confirmation if called with --yes flag, from another installer, or piped
-    if [[ "$1" != "--yes" ]] && [[ -z "$SKIP_CONFIRMATION" ]] && [[ -t 0 ]]; then
-        # Confirm installation (only if stdin is a terminal)
+    # Skip confirmation if called with --yes flag or from another installer
+    if [[ "$1" != "--yes" ]] && [[ -z "$SKIP_CONFIRMATION" ]]; then
+        # Confirm installation
         echo "This will install ButterBash to $BUTTERBASH_DIR"
         echo "Your existing configuration will be backed up."
         echo
