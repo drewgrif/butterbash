@@ -20,7 +20,7 @@ A smooth, modular Bash configuration framework that makes your shell experience 
 
 ### Recommended: Install via ButterScripts
 
-The easiest way to install ButterBash is through the ButterScripts optional installer:
+The easiest way to install ButterBash is through the [ButterScripts](https://github.com/drewgrif/butterscripts) optional installer:
 
 ```bash
 # Clone and run butterscripts installer
@@ -29,6 +29,8 @@ cd butterscripts/setup
 ./optional_tools.sh
 # Select option 1: ButterBash ⭐
 ```
+
+ButterBash is featured as the top option in ButterScripts' optional tools, providing seamless integration with the broader ecosystem of development tools.
 
 ### Quick Install (Direct)
 
@@ -127,6 +129,14 @@ export BUTTERBASH_NOTES_DIR="$HOME/Nextcloud"
 # or export BUTTERBASH_NOTES_DIR="$HOME/Dropbox"
 # Files will be: $BUTTERBASH_NOTES_DIR/.notes and $BUTTERBASH_NOTES_DIR/.tasks
 ```
+
+### Integration with Other Projects
+
+ButterBash works seamlessly with other projects in the ButterScripts ecosystem:
+- **[ButterScripts](https://github.com/drewgrif/butterscripts)** - Comprehensive setup scripts for Debian systems
+- Integrates with terminal emulators like WezTerm
+- Compatible with window managers (DWM, BSPWM, etc.)
+- Works alongside other development tools and configurations
 
 ## 🚀 Key Bindings
 

@@ -6,6 +6,15 @@
 - Started with a monolithic 600+ line `.bashrc` file
 - Functions, aliases, and configurations all mixed together
 - Difficult to maintain and modify
+- Note numbering issues (line numbers vs actual note entries)
+
+### Key User-Driven Improvements
+- Fixed note numbering to treat timestamped entries as single notes
+- Added clipboard integration with safety checks for binary data
+- Implemented strikethrough todos with clear completion workflow
+- Moved from XDG to suckless dotfile approach (~/.notes, ~/.tasks)
+- Simplified installer integration for multi-project scenarios
+- Removed obsolete butterscripts/bashrc in favor of dedicated ButterBash project
 
 ### Transformation Process
 
@@ -19,22 +28,33 @@
 3. **Enhanced existing functions**
    - Added emoji indicators to `note()` function
    - Added clipboard support to notes: `note clip`
-   - Added multi-line clipboard handling
+   - Added multi-line clipboard handling with safety checks
+   - Added binary data protection for clipboard operations
    - Added batch removal for notes: `note rm 1-5`
    - Added help system for both `note` and `todo`
+   - Added cross-platform clipboard support (X11/Wayland/macOS)
 
 4. **Improved function design**
    - Fixed note numbering to treat each timestamped entry as single note
    - Added strikethrough for completed tasks in todo system
    - Changed removal commands to `rm` to avoid conflicts with task names
+   - Removed redundant `todo all` command for simplicity
    - Added sync directory support via `BUTTERBASH_NOTES_DIR`
    - Changed todo storage from `.txt` to `.md` for consistency
+   - Adopted suckless philosophy: simple dotfiles (~/.notes) over XDG paths
 
 5. **Created GitHub project structure**
    - Organized for easy distribution and installation
    - Added comprehensive README with examples
-   - Created automated installer script
+   - Created automated installer script with skip confirmation support
    - Added `.gitignore` for common files
+   - Integrated with ButterScripts ecosystem as option #1
+
+6. **Integration improvements**
+   - Added ButterBash to ButterScripts optional_tools.sh as starred option
+   - Simplified multi-installer approach based on user feedback
+   - Removed obsolete butterscripts/bashrc directory
+   - Enhanced cross-project documentation and references
 
 ## Complete File Structure
 
@@ -162,7 +182,7 @@
 ```bash
 note                    # List all notes numbered by entry
 note "text"            # Add timestamped note
-note clip              # Save clipboard as note (multi-line safe)
+note clip              # Save clipboard as note (safe, multi-line, binary protected)
 note rm 3              # Remove note #3
 note rm 1-5            # Remove notes 1 through 5
 note rm 1 3 5          # Remove multiple specific notes
@@ -172,6 +192,12 @@ note help              # Show help
 ```
 
 Notes are stored in: `${BUTTERBASH_NOTES_DIR:-~/.notes}`
+
+**Clipboard Safety Features:**
+- Binary data detection prevents accidentally saving images/files
+- Size limit (100KB) protects against large content
+- Cross-platform support: xclip (X11), wl-paste (Wayland), pbpaste (macOS)
+- Multi-line content properly formatted with indentation
 
 #### Todo Management (`todo`)
 ```bash
@@ -184,6 +210,12 @@ todo help             # Show help
 ```
 
 Tasks are stored in: `${BUTTERBASH_NOTES_DIR:-~/.tasks}`
+
+**Simplified Design:**
+- Removed redundant `todo all` command for cleaner interface
+- Consistent `rm` command across note and todo systems
+- Strikethrough visualization for completed tasks
+- Clean separation between active and completed items
 
 #### Utility Functions
 
