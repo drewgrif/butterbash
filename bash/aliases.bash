@@ -148,5 +148,5 @@ alias ungz='tar -xzvf'
 alias unbz2='tar -xjvf'
 
 # Misc
-alias weather='curl wttr.in/thonotosassa?u'
+alias weather='curl wttr.in/orlando?u'
 alias ff='fastfetch || neofetch'
