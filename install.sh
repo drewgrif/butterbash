@@ -98,6 +98,12 @@ install_butterbash() {
 
 # Install optional dependencies
 install_dependencies() {
+    # Skip dependency prompt if not interactive (piped)
+    if [[ ! -t 0 ]]; then
+        print_msg "   ℹ Skipping optional tools (run installer interactively to install them)" "$YELLOW"
+        return
+    fi
+    
     echo
     read -p "$(echo -e ${YELLOW}Would you like to install recommended tools? [fzf, ripgrep] \(y/N\): ${NC})" -n 1 -r
     echo
@@ -158,9 +164,9 @@ main() {
         print_msg "⚠ Warning: Bash version 4+ recommended (you have $BASH_VERSION)" "$YELLOW"
     fi
     
-    # Skip confirmation if called with --yes flag or from another installer
-    if [[ "$1" != "--yes" ]] && [[ -z "$SKIP_CONFIRMATION" ]]; then
-        # Confirm installation
+    # Skip confirmation if called with --yes flag, from another installer, or piped
+    if [[ "$1" != "--yes" ]] && [[ -z "$SKIP_CONFIRMATION" ]] && [[ -t 0 ]]; then
+        # Confirm installation (only if stdin is a terminal)
         echo "This will install ButterBash to $BUTTERBASH_DIR"
         echo "Your existing configuration will be backed up."
         echo
