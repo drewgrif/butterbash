@@ -1,4 +1,18 @@
 # 🧈 ButterBash
+
+> **🚨 REPOSITORY MIGRATION NOTICE**
+>
+> This repository has moved to **[Codeberg](https://codeberg.org/justaguylinux/butterbash)**
+>
+> - **Primary repository**: https://codeberg.org/justaguylinux/butterbash
+> - **This GitHub repository**: Mirror only (read-only)
+> - **Migration deadline**: December 15, 2025 - GitHub mirror will be archived
+>
+> Please update your bookmarks and git remotes:
+> ```bash
+> git remote set-url origin https://codeberg.org/justaguylinux/butterbash.git
+> ```
+
 ![Made for Debian](https://img.shields.io/badge/Made%20for-Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)
 
 <img width="1704" height="688" alt="2025-08-20_16-41" src="https://github.com/user-attachments/assets/55435ae4-06f5-4210-b289-d5b76389ea51" />
@@ -36,11 +50,9 @@ ButterBash is featured as the top option in ButterScripts' optional tools, provi
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/drewgrif/butterbash.git
+git clone https://codeberg.org/justaguylinux/butterbash.git
 cd butterbash
 ```
-
-> **Note**: This project will be transitioning to Codeberg in the future. Watch for updates!
 
 2. Run the install script:
 ```bash
@@ -127,7 +139,7 @@ export BUTTERBASH_NOTES_DIR="$HOME/Nextcloud"
 ### Integration with Other Projects
 
 ButterBash works seamlessly with other projects in the ButterScripts ecosystem:
-- **[ButterScripts](https://github.com/drewgrif/butterscripts)** - Comprehensive setup scripts for Debian systems
+- **[ButterScripts](https://codeberg.org/justaguylinux/butterscripts)** - Comprehensive setup scripts for Debian systems
 - Integrates with terminal emulators like WezTerm
 - Compatible with window managers (DWM, BSPWM, etc.)
 - Works alongside other development tools and configurations
