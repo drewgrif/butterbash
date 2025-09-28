@@ -70,6 +70,7 @@ alias search='apt search'
 alias update='sudo apt update'
 alias upgrade='sudo apt update && sudo apt upgrade'
 alias remove='sudo apt remove'
+alias uplist='sudo apt list --upgradable'
 alias autoremove='sudo apt autoremove --purge'
 
 # ============================================================================
