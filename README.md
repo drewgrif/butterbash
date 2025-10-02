@@ -1,191 +1,42 @@
-# 🧈 ButterBash
+# 🚨 REPOSITORY MOVED
 
-> **🚨 REPOSITORY MIGRATION NOTICE**
->
-> This repository has moved to **[Codeberg](https://codeberg.org/justaguylinux/butterbash)**
->
-> - **Primary repository**: https://codeberg.org/justaguylinux/butterbash
-> - **This GitHub repository**: Mirror only (read-only)
-> - **Migration deadline**: December 15, 2025 - GitHub mirror will be archived
->
-> Please update your bookmarks and git remotes:
-> ```bash
-> git remote set-url origin https://codeberg.org/justaguylinux/butterbash.git
-> ```
+**Smooth, modular Bash configuration framework**
 
-![Made for Debian](https://img.shields.io/badge/Made%20for-Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)
+This project has migrated to **Codeberg** for better alignment with open-source values.
 
-<img width="1704" height="688" alt="2025-08-20_16-41" src="https://github.com/user-attachments/assets/55435ae4-06f5-4210-b289-d5b76389ea51" />
+## 👉 New Location: [codeberg.org/justaguylinux/butterbash](https://codeberg.org/justaguylinux/butterbash)
 
-A smooth, modular Bash configuration framework that makes your shell experience butter-smooth.
+**This GitHub repository is archived and read-only.**
 
-## ✨ Features
+Please visit the new repository for:
+- Current documentation
+- Latest releases
+- Issue reporting
+- Contributing
 
-- **Modular Design**: Clean separation of concerns with individual files for aliases, functions, and configurations
-- **Smart Note Taking**: Built-in note system with clipboard integration
-- **Task Management**: Todo list functionality with emoji indicators
-- **FZF Integration**: Fuzzy finding for files and processes
-- **Git-Aware Prompt**: Shows current branch in your prompt
-- **Extensive Aliases**: Productivity shortcuts for common tasks
-- **Archive Extraction**: Universal `extract` command for all archive types
-- **System Functions**: Quick system info, colored man pages, and more
-
-## 📦 Installation
-
-### Recommended: Install via ButterScripts
-
-The easiest way to install ButterBash is through the [ButterScripts](https://github.com/drewgrif/butterscripts) optional installer:
-
+**Update your git remote:**
 ```bash
-# Clone and run butterscripts installer
-git clone https://github.com/drewgrif/butterscripts.git
-cd butterscripts/setup
-./optional_tools.sh
-# Select option 1: ButterBash ⭐
+git remote set-url origin https://codeberg.org/justaguylinux/butterbash.git
 ```
-
-ButterBash is featured as the top option in ButterScripts' optional tools, providing seamless integration with the broader ecosystem of development tools.
-
-### Direct Install
-
-1. Clone the repository:
-```bash
-git clone https://codeberg.org/justaguylinux/butterbash.git
-cd butterbash
-```
-
-2. Run the install script:
-```bash
-./install.sh
-```
-
-3. Reload your shell:
-```bash
-source ~/.bashrc
-```
-
-> **Important**: ButterBash will backup your existing `.bashrc` and replace it with a modular configuration. This is the intended behavior for the full ButterBash experience.
-
-## 🗂️ Structure
-
-```
-~/.config/bash/
-├── aliases.bash        # Command shortcuts
-├── prompt.bash         # Custom prompt with git branch
-├── keybinds.bash       # Keyboard shortcuts
-├── fzf.bash           # FZF configuration
-└── functions/
-    ├── note.bash      # Note-taking system
-    ├── todo.bash      # Task management
-    ├── system.bash    # System utilities
-    └── utils.bash     # General utilities
-```
-
-## 🎯 Core Functions
-
-### Note Taking
-```bash
-note                    # List all notes numbered by entry
-note "Remember this"    # Add a note with timestamp
-note clip              # Save clipboard content as note
-note rm 3              # Remove note #3
-note rm 1-5            # Remove notes 1 through 5
-note rm 1 3 5          # Remove multiple specific notes
-note edit              # Open notes in editor
-note clear             # Delete all notes (with confirmation)
-```
-
-### Todo Management
-```bash
-todo                   # List active tasks (completed shown struck-through)
-todo "Write docs"      # Add a new task
-todo done 1           # Mark task #1 as complete (strikethrough)
-todo rm 2             # Delete task #2 completely
-todo clear            # Remove struck-through completed tasks
-```
-
-### Utility Functions
-```bash
-mkcd directory        # Create and enter directory
-extract file.tar.gz   # Extract any archive type
-backup file.txt       # Create timestamped backup
-calc 2+2             # Quick calculations
-sysinfo              # Display system information
-```
-
-## ⚙️ Configuration
-
-### Customization
-
-Add your own customizations by creating files in `~/.config/bash/`:
-
-1. Create a new module: `~/.config/bash/custom.bash`
-2. It will be automatically loaded on next shell start
-
-### Local Overrides
-
-For machine-specific settings, create `~/.bashrc.local`:
-```bash
-# ~/.bashrc.local
-export CUSTOM_VAR="value"
-alias myalias="command"
-
-# Custom notes/tasks directory (for cloud sync)
-export BUTTERBASH_NOTES_DIR="$HOME/Nextcloud"
-# or export BUTTERBASH_NOTES_DIR="$HOME/Dropbox"
-# Files will be: $BUTTERBASH_NOTES_DIR/.notes and $BUTTERBASH_NOTES_DIR/.tasks
-```
-
-### Integration with Other Projects
-
-ButterBash works seamlessly with other projects in the ButterScripts ecosystem:
-- **[ButterScripts](https://codeberg.org/justaguylinux/butterscripts)** - Comprehensive setup scripts for Debian systems
-- Integrates with terminal emulators like WezTerm
-- Compatible with window managers (DWM, BSPWM, etc.)
-- Works alongside other development tools and configurations
-
-## 🚀 Key Bindings
-
-- **Ctrl+L**: Clear screen
-- **↑/↓**: Search command history
-- **Ctrl+R**: Reverse history search (with FZF if available)
-
-## 📋 Requirements
-
-- Bash 4.0+
-- Optional but recommended:
-  - `fzf` - Fuzzy finder
-  - `ripgrep` - Fast grep alternative
-  - `eza` or `exa` - Modern ls replacement
-  - `xclip` - Clipboard integration (X11)
-  - `wl-clipboard` - Clipboard integration (Wayland)
-
-Install optional dependencies:
-```bash
-install_tools  # Built-in function to install fzf and ripgrep
-```
-
-## 🤝 Contributing
-
-Pull requests are welcome! For major changes, please open an issue first.
-
-## 📝 License
-
-MIT
-
-## 🙏 Acknowledgments
-
-- Inspired by various dotfile repositories
-- Built with love for the Bash community
 
 ---
 
-## ☕ Support
-
-If ButterBash has been helpful, consider buying me a coffee:
-
-<a href="https://www.buymeacoffee.com/justaguylinux" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy me a coffee" /></a>
+![Screenshot](https://github.com/user-attachments/assets/55435ae4-06f5-4210-b289-d5b76389ea51)
 
 ---
 
-Made with 🧈 by [JustAGuyLinux](https://www.youtube.com/@justaguylinux)
+## 🤝 Connect
+
+- 🌐 **Website**: [justaguylinux.com](https://justaguylinux.com)
+- 🎬 **YouTube**: [Just A Guy Linux](https://youtube.com/@justaguylinux)
+- 🐘 **Mastodon**: [@justaguylinux@fosstodon.org](https://fosstodon.org/@justaguylinux)
+
+---
+
+<div align="center">
+
+**Supporting truly open-source infrastructure** 🚀
+
+[![Codeberg](https://img.shields.io/badge/Hosted%20on-Codeberg-2185D0?style=for-the-badge)](https://codeberg.org/justaguylinux)
+
+</div>
